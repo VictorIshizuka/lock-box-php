@@ -1,4 +1,10 @@
 <?php
+
+function base_path($path) {
+
+    return __DIR__ . "/../" . $path;
+
+}
 function view($view, $data = [])
 {
 
@@ -41,7 +47,7 @@ function abort($code)
 function config($key = null)
 {
 
-  $config = require 'config.php';
+  $config = require base_path('config.php');
 
   if (strlen($key) > 0) {
 
@@ -64,7 +70,7 @@ function auth()
 function flash()
 {
 
-  return new Flash;
+  return new Core\Flash;
 }
 
 function old($field) {

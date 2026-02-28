@@ -1,19 +1,12 @@
 <?php
 
-require "../models/User.php";
+require "../Core/functions.php";
+
+spl_autoload_register(function($class) {
+    $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
+    require base_path("{$class}.php");
+});
 
 session_start();
 
-require "../core/Flash.php";
-
-require "../core/functions.php";
-
-$config = require '../core/config.php';
-
-require "../core/Database.php";
-
-require '../core/Validation.php';
-
-require "../core/routes.php";
-
-?>
+require "../routes.php";
