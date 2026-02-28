@@ -13,7 +13,7 @@ function view($view, $data = [])
     $$key = $value;
   }
 
-  require '../views/templates/html.php';
+   require base_path('views/templates/html.php');
 }
 
 function dd(...$dump)
