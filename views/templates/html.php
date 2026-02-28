@@ -37,14 +37,9 @@ $validations = flash()->get('validations');
 
 ?>
 
-<?php if (auth()): ?>
-
-  <?php require "../views/templates/app.php" ?>
-
-<?php else: ?>
-
-  <?php require "../views/templates/auth.php" ?>
-
-<?php endif; ?>
+<?php
+$template = auth() ? 'app' : 'auth';
+require base_path("views/templates/{$template}.php");
+?>
 
 </html>

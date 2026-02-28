@@ -34,7 +34,7 @@
           </div>
         <?php endif; ?>
 
-        <?php require "../views/{$view}.view.php" ?>
+        <?php require base_path("views/{$view}.view.php"); ?>
       </div>
     </div>
   </div>

@@ -5,10 +5,10 @@
     </div>
     <div class="flex-none">
       <ul class="menu menu-horizontal px-1">
-        <li><a>ver</a></li>
+        <li><a href="/show">ver</a></li>
         <li>
           <details>
-            <summary><?= $user->name ?></summary>
+            <summary><?= auth()->name ?></summary>
             <ul class="bg-base-100 rounded-t-none p-2">
               <li><a href="/logout">Sair</a></li>
             </ul>
@@ -27,6 +27,6 @@
         </svg>
       </label>
     </form>
-    <a href="#" class="btn btn-primary">+ Item</a>
+    <a href="/notes/create" class="btn btn-primary">+ Item</a>
   </div>
 </header>
