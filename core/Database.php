@@ -1,5 +1,9 @@
 <?php
 
+namespace Core;
+
+use PDO;
+
 class Database
 {
 
@@ -8,7 +12,7 @@ class Database
   public function __construct($config)
   {
 
-    $this->db = new \PDO($this->getDsn($config));
+    $this->db = new PDO($this->getDsn($config));
   }
 
   private function getDsn($config)
@@ -35,7 +39,7 @@ class Database
 
     if ($class) {
 
-      $prepare->setFetchMode(\PDO::FETCH_CLASS, $class);
+      $prepare->setFetchMode(PDO::FETCH_CLASS, $class);
     }
 
     $prepare->execute($params);
@@ -43,5 +47,3 @@ class Database
     return $prepare;
   }
 }
-
-$database = new Database($config['database']);
