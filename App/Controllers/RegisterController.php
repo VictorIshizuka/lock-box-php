@@ -10,10 +10,6 @@ class RegisterController
 {
     public function index()
     {
-        if (auth()) {
-            return redirect('/');
-        }
-
         return view('register');
     }
 

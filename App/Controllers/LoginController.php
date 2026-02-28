@@ -10,11 +10,6 @@ class LoginController
 {
     public function index()
     {
-        var_dump($_SESSION);
-        if (auth()) {
-            return redirect('/');
-        }
-
         return view('login');
     }
 
