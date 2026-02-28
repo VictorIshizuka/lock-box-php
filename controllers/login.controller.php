@@ -6,8 +6,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     'password' => ['required']
   ], $_POST);
 
-  if ($validation->isInvalid('login')) {
-    header("Location: /login");
+  if ($validation->isInvalid()) {
+    view('login');
     exit();
   }
 
@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   if (empty($user) || !password_verify($_POST['password'], $user->password)) {
     flash()->push('validation_login', ['Usuário ou senha estão incorretos!']);
-    header('Location: /login');
+    view('login');
     exit();
   }
 

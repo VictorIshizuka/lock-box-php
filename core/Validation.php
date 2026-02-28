@@ -117,7 +117,6 @@ class Validation
 
     public function isInvalid($customName = null)
     {
-        // dd($this->validations);
         $key = 'validations';
 
         if ($customName) {

@@ -7,8 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         'password' => ['required', 'min:8', 'max:30', 'strong']
     ], $_POST);
 
-    if ($validation->isInvalid('register')) {
-        header("Location: /register");
+    if ($validation->isInvalid()) {
+        view('register');
         exit();
     }
 
@@ -24,3 +24,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 auth() ? header('Location: /') : view('register');
+exit();
