@@ -32,32 +32,12 @@
 </head>
 
 <?php
-$classActive = 'font-bold';
-
-$classAuth = '';
-
-if ($view == 'login') {
-  $classLogin = $classActive;
-}
-
-if ($view == 'register') {
-  $classRegister = $classActive;
-}
-
-
-$current_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-
-$auth_link = match ($current_path) {
-  '/login'    => ['label' => 'Registre-se', 'path' => '/register'],
-  '/register' => ['label' => 'Login',       'path' => '/login'],
-  default     => ['label' => 'Login',       'path' => '/login'],
-};
 
 $validations = flash()->get('validations');
 
 ?>
 
-<?php if (auth() ||  $view == 'index' || $view == ''): ?>
+<?php if (auth()): ?>
 
   <?php require "../views/templates/app.php" ?>
 

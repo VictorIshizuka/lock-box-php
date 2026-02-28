@@ -47,7 +47,7 @@ function abort($code)
 function config($key = null)
 {
 
-  $config = require base_path('config.php');
+  $config = require base_path('/config/config.php');
 
   if (strlen($key) > 0) {
 
