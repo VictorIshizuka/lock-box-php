@@ -11,6 +11,12 @@ class User
   public $email;
   public $password;
 
+  private $database;
+  public function __construct()
+  {
+    $this->database = new Database(config('database'));
+  }
+
   public static function findByEmail($email)
   {
     $database = new Database(config('database'));

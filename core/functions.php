@@ -1,9 +1,9 @@
 <?php
 
-function base_path($path) {
+function base_path($path)
+{
 
-    return __DIR__ . "/../" . $path;
-
+  return __DIR__ . "/../" . $path;
 }
 function view($view, $data = [])
 {
@@ -73,16 +73,20 @@ function flash()
   return new Core\Flash;
 }
 
-function old($field) {
+function old($field)
+{
 
-    $post = $_POST;
+  $post = $_POST;
 
-    if (isset($post[$field])) {
+  if (isset($post[$field])) {
 
-        return $post[$field];
+    return $post[$field];
+  }
 
-    }
+  return '';
+}
 
-    return '';
-
+function redirect($uri)
+{
+  return header('Location:' . $uri);
 }
