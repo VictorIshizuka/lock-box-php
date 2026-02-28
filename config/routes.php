@@ -6,6 +6,7 @@ use App\Controllers\IndexController;
 use App\Controllers\LoginController;
 use App\Controllers\RegisterController;
 use App\Controllers\LogoutController;
+use App\Controllers\NotesController;
 
 (new Route())
 
@@ -18,5 +19,10 @@ use App\Controllers\LogoutController;
   ->post('/register', [RegisterController::class, 'register'])
 
   ->get('/logout', [LogoutController::class, 'index'])
+
+  ->get('/notes/create', [NotesController::class, 'index'])
+  ->post('/notes', [NotesController::class, 'store'])
+
+
 
   ->run();

@@ -6,6 +6,6 @@ class IndexController
 {
   public function __invoke()
   {
-    return view('index', ['user'=> auth()]);
+    return view('index');
   }
 }

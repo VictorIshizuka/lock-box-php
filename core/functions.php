@@ -5,7 +5,7 @@ function base_path($path)
 
   return __DIR__ . "/../" . $path;
 }
-function view($view, $data = [])
+function view($view, $data = [], $template='app')
 {
 
   foreach ($data as $key => $value) {
@@ -13,7 +13,7 @@ function view($view, $data = [])
     $$key = $value;
   }
 
-   require base_path('views/templates/html.php');
+  require base_path('views/templates/html.php');
 }
 
 function dd(...$dump)
