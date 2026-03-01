@@ -23,7 +23,7 @@ use App\Middlewares\GuestMiddleware;
   ->get('/logout', LogoutController::class, GuestMiddleware::class)
 
   ->get('/notes/create', [NotesController::class, 'index'], AuthMiddleware::class)
-  ->post('/notes', [NotesController::class, 'store'], AuthMiddleware::class)
+  ->post('/notes/create', [NotesController::class, 'store'], AuthMiddleware::class)
 
 
 

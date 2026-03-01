@@ -1,6 +1,16 @@
 CREATE TABLE users (
-id integer PRIMARY KEY,
+id INTEGER PRIMARY KEY,
 name VARCHAR(255) NOT NULL,
 email VARCHAR(255) NOT NULL,
 password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE notes (
+id INTEGER PRIMARY KEY,
+title VARCHAR(255),
+note TEXT,
+user_id INTEGER,
+created_at DATETIME,
+updated_at DATETIME,
+FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
