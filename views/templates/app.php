@@ -10,9 +10,10 @@
       <?php else: ?>
         <?php if (!empty($notes)): ?>
           <?php foreach ($notes as $key => $note): ?>
-            <a href="?id=<?= $note->id ?><?= isset($_GET['search']) ? '&search=' . $_GET['search'] : '' ?>" class="w-full p-2 cursor-pointer hover:bg-base-200
-          <?php if ($key == 0): ?> rounded-tl-box <?php endif; ?>
-          <?php if ($note->id == $noteSelected->id): ?> bg-base-200 <?php endif; ?>
+            <a href="?id=<?= $note->id ?><?= request()->get('search', '', '&search=') ?>"
+              class="w-full p-2 cursor-pointer hover:bg-base-200
+              <?php if ($key == 0): ?> rounded-tl-box <?php endif; ?>
+              <?php if ($note->id == $noteSelected->id): ?> bg-base-200 <?php endif; ?>
             ">
               <?= $note->title ?>
             </a>

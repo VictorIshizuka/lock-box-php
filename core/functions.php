@@ -90,3 +90,8 @@ function redirect($uri)
 {
   return header('Location:' . $uri);
 }
+
+
+function request(){
+  return new Core\Request();
+}

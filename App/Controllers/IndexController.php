@@ -8,19 +8,22 @@ class IndexController
 {
   public function __invoke()
   {
-    $search = $_GET['search'] ?? null;
 
-    $notes = Note::all($search);
+    $notes = Note::all(request()->get('search'));
 
-    $id = isset($_GET['id']) ? $_GET['id'] : (sizeof($notes) > 0 ? $notes[0]->id : null);
-
-    $filter = array_filter($notes, fn($n) => $n->id == $id);
-    $noteSelected = array_pop($filter);
-
-    if (!$noteSelected) {
+    if (! $noteSelected = $this->noteSelected($notes)) {
       return view('notes/not-found');
     }
 
     return view('index', compact('notes', 'noteSelected'));
+  }
+
+  private function noteSelected($notes)
+  {
+    $id = request()->get('id', (sizeof($notes) > 0 ? $notes[0]->id : null));
+
+    $filter = array_filter($notes, fn($n) => $n->id == $id);
+
+    return  array_pop($filter);
   }
 }
