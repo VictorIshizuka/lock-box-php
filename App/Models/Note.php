@@ -15,13 +15,19 @@ class Note
   public $user_id;
 
   public static function query() {}
-  public static function all()
+  public static function all($search)
   {
     $database = new Database(config('database'));
     return $database->query(
-      "SELECT * FROM notes WHERE user_id = :user_id",
+      "SELECT * FROM notes WHERE user_id = :user_id" . (
+        $search ? " AND title LIKE :search" : ""
+      ),
       self::class,
-      ['user_id' => auth()->id]
+      array_merge(
+        ['user_id' => auth()->id],
+        $search ? ['search' => "%$search%"] : []
+      )
+
     )->fetchAll();
   }
   public static function create($data)
