@@ -33,6 +33,6 @@ class NotesController
     ]);
 
     flash()->push('message', 'Nota criada com sucesso! 👍');
-    return redirect('/');
+    return redirect('/notes');
   }
 }

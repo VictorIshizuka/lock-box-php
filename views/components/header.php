@@ -1,11 +1,11 @@
 <header class="mx-auto max-w-screen-lg w-full">
   <div class="navbar bg-base-100 shadow-sm">
     <div class="flex-1">
-      <a href="/" class="btn btn-ghost text-xl">LockBox</a>
+      <a href="/notes" class="btn btn-ghost text-xl">LockBox</a>
     </div>
     <div class="flex-none">
       <ul class="menu menu-horizontal px-1">
-        <li><a href="/show">ver</a></li>
+        <li><a href="/notes/show">ver</a></li>
         <li>
           <details>
             <summary><?= auth()->name ?></summary>
