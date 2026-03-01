@@ -2,9 +2,25 @@
   <?php require base_path("views/components/header.php"); ?>
 
   <div class="flex py-6 flex-1 mx-auto w-full max-w-screen-lg min-h-0">
-    <div class="bg-base-300 rounded-l-box w-56 overflow-y-auto">
-      <div class="bg-base-200 p-4">+ Nova Nota</div>
+    <div class="bg-base-300 rounded-l-box w-56 overflow-y-auto flex flex-col divide-y divide-base-200">
+      <?php if ($view == 'notes/create'): ?>
+
+        <div class="bg-base-200 p-2">+ Nova Nota</div>
+
+      <?php else: ?>
+        <?php foreach ($notes as $key => $note): ?>
+          <a href="?id=<?= $note->id ?>" class="w-full p-2 cursor-pointer hover:bg-base-200
+          <?php if ($key == 0): ?> rounded-tl-box <?php endif; ?>
+          <?php if ($note->id == $noteSelected->id): ?> bg-base-200 <?php endif; ?>
+            ">
+            <?= $note->title ?>
+          </a>
+
+        <?php endforeach; ?>
+
+      <?php endif; ?>
     </div>
+
     <main class="bg-base-200 rounded-r-box w-full p-10 overflow-y-auto">
 
       <?php if ($message = flash()->get('message')): ?>

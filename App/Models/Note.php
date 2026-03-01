@@ -11,11 +11,19 @@ class Note
   public $title;
   public $note;
   public $created_at;
-  public $update_at;
+  public $updated_at;
   public $user_id;
 
   public static function query() {}
-  public static function all() {}
+  public static function all()
+  {
+    $database = new Database(config('database'));
+    return $database->query(
+      "SELECT * FROM notes WHERE user_id = :user_id",
+      self::class,
+      ['user_id' => auth()->id]
+    )->fetchAll();
+  }
   public static function create($data)
   {
     $database = new Database(config('database'));
