@@ -5,12 +5,20 @@
     </div>
     <div class="flex-none">
       <ul class="menu menu-horizontal px-1">
-        <li><a href="/notes/show">ver</a></li>
+        <li>
+          <?php if (session()->get('show')): ?>
+            <a href="/notes/hidden">ocultar</a>
+          <?php else: ?>
+            <a href="/notes/confirm">ver</a>
+          <?php endif; ?>
+        </li>
         <li>
           <details>
             <summary><?= auth()->name ?></summary>
             <ul class="bg-base-100 rounded-t-none p-2">
-              <li><a href="/logout">Sair</a></li>
+              <li>
+                <a href="/logout">Sair</a>
+              </li>
             </ul>
           </details>
         </li>

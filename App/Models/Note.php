@@ -14,8 +14,17 @@ class Note
   public $updated_at;
   public $user_id;
 
+  public function note()
+  {
+    if (session()->get('show')) {
+      return decrypt($this->note);
+    }
+
+    return str_repeat('*', strlen($this->note));
+  }
+
   public static function query() {}
-  public static function all($search)
+  public static function all($search = null)
   {
     $database = new Database(config('database'));
     return $database->query(
@@ -38,7 +47,7 @@ class Note
       VALUES (:title, :note, :user_id, :created_at, :updated_at)",
       params: [
         'title' => $data['title'],
-        'note' => $data['note'],
+        'note' => encrypt($data['note']),
         'user_id' => $data['user_id'],
         'created_at' => $data['created_at'],
         'updated_at' => $data['updated_at']
@@ -51,14 +60,21 @@ class Note
   {
     $database = new Database((config('database')));
 
+    $set = "title = :title";
+
+    if ($data['note']) {
+
+      $set .= ", note = :note";
+    }
+
     return $database->query(
-      "UPDATE notes SET title = :title, note = :note
+      "UPDATE notes
+      SET $set
       WHERE id = :id",
-      params: [
+      params: array_merge([
         'title' => $data['title'],
-        'note' => $data['note'],
         'id' => $data['id']
-      ]
+      ], $data['note'] ? ['note' => encrypt($data['note'])] : [])
     );
   }
 
@@ -66,6 +82,6 @@ class Note
   {
     $database = new Database((config('database')));
 
-    return $database->query('DELETE FROM notes WHERE id = :id', params:['id' => $id]);
+    return $database->query('DELETE FROM notes WHERE id = :id', params: ['id' => $id]);
   }
 }

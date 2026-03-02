@@ -69,4 +69,37 @@ class NotesController
     flash()->push('validations', 'Nota não encontrada.');
     return redirect('/notes');
   }
+
+  public function show()
+  {
+    $validation = Validation::validate([
+      'password' => ['required']
+    ], request()->all());
+
+    if ($validation->isInvalid()) {
+      return view('notes/confirm');
+    }
+
+    if (! (password_verify(request()->post('password'), auth()->password))) {
+      flash()->push('validations', ['password' => ['Senha incorreta!']]);
+
+      return view('notes/confirm');
+    }
+
+    session()->set('show', true);
+
+    return redirect('/notes');
+  }
+
+  public function hidden()
+  {
+    session()->forget('show');
+
+    return redirect('/notes');
+  }
+
+  public function confirm()
+  {
+    return view('/notes/confirm');
+  }
 }

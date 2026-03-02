@@ -5,8 +5,11 @@ return [
     'database' => [
 
         'driver' => 'sqlite',
-        'database' => '../database/lock-box-db.sqlite',
-
+        'database' => '../database/lock-box-db.sqlite'
+    ],
+    'security' => [
+        'first_key' => env('ENCRYPT_FIRST_KEY', base64_encode('first_key12345')),
+        'second_key' => env('ENCRYPT_SECOND_KEY', base64_encode('second_key12345'))
     ]
 
 ];
