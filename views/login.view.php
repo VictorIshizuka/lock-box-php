@@ -6,9 +6,9 @@
       <span class="label-text">E-mail</span>
     </label>
     <input type="email" name="email" class="input input-bordered" value="<?= old('email') ?>" />
-    <?php if (isset($validations['email'])): ?>
+    <?php if (isset($validations['email'])) { ?>
       <div class="mt-1 text-xs text-error"><?= $validations['email'] ?></div>
-    <?php endif; ?>
+    <?php } ?>
   </div>
 
   <div class="form-control">
@@ -16,9 +16,9 @@
       <span class="label-text">Senha</span>
     </label>
     <input type="password" name="password" class="input input-bordered" />
-    <?php if (isset($validations['password'])): ?>
+    <?php if (isset($validations['password'])) { ?>
       <div class="mt-1 text-xs text-error"><?= $validations['password'] ?></div>
-    <?php endif; ?>
+    <?php } ?>
   </div>
 
   <div class="form-control mt-6">

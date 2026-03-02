@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\User;
-
 use Core\Validation;
 
 class RegisterController
@@ -18,7 +17,7 @@ class RegisterController
         $validation = Validation::validate([
             'name' => ['required'],
             'email' => ['required', 'email', 'confirmed', 'unique:users'],
-            'password' => ['required', 'min:8', 'max:30', 'strong']
+            'password' => ['required', 'min:8', 'max:30', 'strong'],
         ], $_POST);
 
         if ($validation->isInvalid()) {
@@ -28,10 +27,11 @@ class RegisterController
         User::create([
             'name' => $_POST['name'],
             'email' => $_POST['email'],
-            'password' => $_POST['password']
+            'password' => $_POST['password'],
         ]);
 
         flash()->push('message', 'Registrado com sucesso! 👍');
+
         return redirect('/login');
     }
 }

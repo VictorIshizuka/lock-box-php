@@ -12,7 +12,7 @@ class Route
             $data = [
                 'class' => $controller,
                 'method' => '__invoke',
-                'middleware' => $middleware
+                'middleware' => $middleware,
             ];
         }
 
@@ -20,7 +20,7 @@ class Route
             $data = [
                 'class' => $controller[0],
                 'method' => $controller[1],
-                'middleware' => $middleware
+                'middleware' => $middleware,
             ];
         }
 
@@ -59,7 +59,7 @@ class Route
     {
         $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
-        $httpMethod = request()->post('__method',$_SERVER['REQUEST_METHOD']);
+        $httpMethod = request()->post('__method', $_SERVER['REQUEST_METHOD']);
 
         if (! isset($this->routes[$httpMethod][$uri])) {
             abort(404);
@@ -71,7 +71,7 @@ class Route
         $method = $routeInfo['method'];
         $middleware = $routeInfo['middleware'];
 
-        if($middleware){
+        if ($middleware) {
             $m = new $middleware;
             $m->handle();
         }

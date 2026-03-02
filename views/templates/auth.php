@@ -11,7 +11,7 @@
         </p>
       </div>
       <div class="card bg-gray-500 w-full max-w-sm shrink-0 shadow-2xl">
-        <?php if ($validation = flash()->get("validation_{$view}")): ?>
+        <?php if ($validation = flash()->get("validation_{$view}")) { ?>
           <div class="mx-2">
             <div role="alert" class="alert alert-error mt-2">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
@@ -21,9 +21,9 @@
             </div>
           </div>
 
-        <?php endif; ?>
+        <?php } ?>
 
-        <?php if ($message = flash()->get('message')): ?>
+        <?php if ($message = flash()->get('message')) { ?>
           <div class="mx-2">
             <div role="alert" class="alert alert-success mt-2">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
@@ -32,7 +32,7 @@
               <span> <?= $message ?></span>
             </div>
           </div>
-        <?php endif; ?>
+        <?php } ?>
 
         <?php require base_path("views/{$view}.view.php"); ?>
       </div>

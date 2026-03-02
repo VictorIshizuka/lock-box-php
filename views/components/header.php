@@ -6,11 +6,11 @@
     <div class="flex-none">
       <ul class="menu menu-horizontal px-1">
         <li>
-          <?php if (session()->get('show')): ?>
+          <?php if (session()->get('show')) { ?>
             <a href="/notes/hidden">ocultar</a>
-          <?php else: ?>
+          <?php } else { ?>
             <a href="/notes/confirm">ver</a>
-          <?php endif; ?>
+          <?php } ?>
         </li>
         <li>
           <details>

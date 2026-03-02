@@ -1,11 +1,26 @@
 <?php
 
-require "../Core/functions.php";
+declare(strict_types=1);
 
-spl_autoload_register(function($class) {
-    $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
-    require base_path("{$class}.php");
-});
+use Carbon\Carbon;
+
+require '../vendor/autoload.php';
+
+/*
+|--------------------------------------------------------------------------
+| Timezone da aplicação
+|--------------------------------------------------------------------------
+*/
+
+date_default_timezone_set(config('date.tz'));
+
+/*
+|--------------------------------------------------------------------------
+| Configuração global do Carbon
+|--------------------------------------------------------------------------
+*/
+
+Carbon::setLocale('pt_BR');
 
 session_start();
 

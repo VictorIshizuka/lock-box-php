@@ -1,6 +1,8 @@
 ENCRYPT_FIRST_KEY=
 ENCRYPT_SECOND_KEY=
 
+TZ="America/Sao_Paulo"
+
 ==========================
 conforme a doc do php... para criar  suas chaves mais seguras dentro do base64
 

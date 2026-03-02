@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\User;
-
 use Core\Validation;
 
 class LoginController
@@ -17,7 +16,7 @@ class LoginController
     {
         $validation = Validation::validate([
             'email' => ['required', 'email'],
-            'password' => ['required']
+            'password' => ['required'],
         ], $_POST);
 
         if ($validation->isInvalid()) {
@@ -26,13 +25,15 @@ class LoginController
 
         $user = User::findByEmail($_POST['email']);
 
-        if (empty($user) || !password_verify($_POST['password'], $user->password)) {
+        if (empty($user) || ! password_verify($_POST['password'], $user->password)) {
             flash()->push('validation_login', ['Usuário ou senha estão incorretos!']);
+
             return view('login');
         }
 
         $_SESSION['auth'] = $user;
-        flash()->push('message', "Seja bem-vindo, " . $user->name . "!");
+        flash()->push('message', 'Seja bem-vindo, '.$user->name.'!');
+
         return redirect('notes');
     }
 }

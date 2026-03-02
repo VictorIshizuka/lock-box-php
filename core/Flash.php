@@ -2,8 +2,8 @@
 
 namespace Core;
 
-class Flash {
-
+class Flash
+{
     public function push($key, $value)
     {
 
@@ -27,5 +27,4 @@ class Flash {
         return $value;
 
     }
-
 }

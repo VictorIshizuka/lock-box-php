@@ -6,44 +6,43 @@ use PDO;
 
 class Database
 {
+    private $db;
 
-  private $db;
+    public function __construct($config)
+    {
 
-  public function __construct($config)
-  {
-
-    $this->db = new PDO($this->getDsn($config));
-  }
-
-  private function getDsn($config)
-  {
-
-    $driver = $config['driver'];
-
-    unset($config['driver']);
-
-    $dsn = $driver . ':' . http_build_query($config, '', ';');
-
-    if ($driver == 'sqlite') {
-
-      $dsn = $driver . ':' . $config['database'];
+        $this->db = new PDO($this->getDsn($config));
     }
 
-    return $dsn;
-  }
+    private function getDsn($config)
+    {
 
-  public function query($query, $class = null, $params = [])
-  {
+        $driver = $config['driver'];
 
-    $prepare = $this->db->prepare($query);
+        unset($config['driver']);
 
-    if ($class) {
+        $dsn = $driver.':'.http_build_query($config, '', ';');
 
-      $prepare->setFetchMode(PDO::FETCH_CLASS, $class);
+        if ($driver == 'sqlite') {
+
+            $dsn = $driver.':'.$config['database'];
+        }
+
+        return $dsn;
     }
 
-    $prepare->execute($params);
+    public function query($query, $class = null, $params = [])
+    {
 
-    return $prepare;
-  }
+        $prepare = $this->db->prepare($query);
+
+        if ($class) {
+
+            $prepare->setFetchMode(PDO::FETCH_CLASS, $class);
+        }
+
+        $prepare->execute($params);
+
+        return $prepare;
+    }
 }

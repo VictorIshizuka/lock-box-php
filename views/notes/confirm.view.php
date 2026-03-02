@@ -9,9 +9,9 @@
 
       <input type="password" name="password" class="input input-bordered w-full" />
 
-      <?php if (isset($validations['password'])): ?>
+      <?php if (isset($validations['password'])) { ?>
         <div class="mt-1 text-xs text-error"><?= $validations['password'] ?></div>
-      <?php endif; ?>
+      <?php } ?>
     </label>
 
     <button class="btn btn-primary">Abrir minhas notas</button>

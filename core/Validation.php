@@ -4,7 +4,6 @@ namespace Core;
 
 class Validation
 {
-
     public $validations = [];
 
     public static function validate($rules, $data)
@@ -21,7 +20,7 @@ class Validation
                 if ($rule == 'confirmed') {
 
                     $validation->$rule($field, $valueField, $data["{$field}_confirmed"]);
-                } else if (str_contains($rule, ':')) {
+                } elseif (str_contains($rule, ':')) {
 
                     $temp = explode(':', $rule);
 
@@ -123,11 +122,11 @@ class Validation
 
         if ($customName) {
 
-            $key .= '_' . $customName;
+            $key .= '_'.$customName;
         }
 
         flash()->push($key, $this->validations);
 
-        return sizeof($this->validations) > 0;
+        return count($this->validations) > 0;
     }
 }
