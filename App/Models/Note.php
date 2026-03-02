@@ -46,4 +46,19 @@ class Note
       ]
     );
   }
+
+  public static function update($data)
+  {
+    $database = new Database((config('database')));
+
+    return $database->query(
+      "UPDATE notes SET title = :title, note = :note
+      WHERE id = :id",
+      params: [
+        'title' => $data['title'],
+        'note' => $data['note'],
+        'id' => $data['id']
+      ]
+    );
+  }
 }

@@ -35,4 +35,25 @@ class NotesController
     flash()->push('message', 'Nota criada com sucesso! 👍');
     return redirect('/notes');
   }
+
+  public function update()
+  {
+    if (request()->post('id')) {
+      $validation = Validation::validate([
+        'title' => ['required', 'min:3', 'max:255'],
+        'note' => ['required']
+      ], request()->all());
+
+      if ($validation->isInvalid()) {
+        return redirect('/notes?id=' . request()->post('id'));
+      }
+
+      Note::update(request()->all());
+      flash()->push('message', 'Nota atualizada com sucesso! 👍');
+      return redirect('/notes?id=' . request()->post('id'));
+    }
+
+    flash()->push('validations', 'Nota não encontrada.');
+    return redirect('/notes');
+  }
 }
