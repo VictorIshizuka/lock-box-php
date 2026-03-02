@@ -49,10 +49,23 @@ class NotesController
       }
 
       Note::update(request()->all());
+
       flash()->push('message', 'Nota atualizada com sucesso! 👍');
       return redirect('/notes?id=' . request()->post('id'));
     }
 
+    flash()->push('validations', 'Nota não encontrada.');
+    return redirect('/notes');
+  }
+
+  public function destroy()
+  {
+    if (request()->post('id')) {
+      Note::delete(request()->post('id'));
+
+      flash()->push('message', 'Nota deletada com sucesso! 👍');
+      return redirect('/notes');
+    }
     flash()->push('validations', 'Nota não encontrada.');
     return redirect('/notes');
   }

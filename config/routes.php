@@ -25,6 +25,7 @@ use App\Middlewares\GuestMiddleware;
   ->get('/notes/create', [NotesController::class, 'index'], AuthMiddleware::class)
   ->post('/notes', [NotesController::class, 'store'], AuthMiddleware::class)
   ->put('/notes', [NotesController::class, 'update'], AuthMiddleware::class)
+  ->delete('/notes', [NotesController::class, 'destroy'], AuthMiddleware::class)
 
 
 

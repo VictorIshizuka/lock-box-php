@@ -61,4 +61,11 @@ class Note
       ]
     );
   }
+
+  public static function delete($id)
+  {
+    $database = new Database((config('database')));
+
+    return $database->query('DELETE FROM notes WHERE id = :id', params:['id' => $id]);
+  }
 }
