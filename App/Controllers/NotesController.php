@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\Note;
-use Carbon\Carbon;
 use Core\Validation;
 
 class NotesController
@@ -18,7 +17,7 @@ class NotesController
         $validation = Validation::validate([
             'title' => ['required', 'min:3', 'max:255'],
             'note' => ['required'],
-        ], $_POST);
+        ], request()->all());
 
         if ($validation->isInvalid()) {
             return view('notes/create');
@@ -28,8 +27,6 @@ class NotesController
             'title' => $_POST['title'],
             'note' => $_POST['note'],
             'user_id' => auth()->id,
-            'created_at' => Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon::now()->toDateTimeString(),
         ]);
 
         flash()->push('message', 'Nota criada com sucesso! 👍');

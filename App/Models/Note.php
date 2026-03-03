@@ -53,13 +53,13 @@ class Note
 
         return $database->query(
             'INSERT INTO notes (title, note, user_id, created_at, updated_at)
-      VALUES (:title, :note, :user_id, :created_at, :updated_at)',
+            VALUES (:title, :note, :user_id, :created_at, :updated_at)',
             params: [
                 'title' => $data['title'],
                 'note' => encrypt($data['note']),
                 'user_id' => $data['user_id'],
-                'created_at' => $data['created_at'],
-                'updated_at' => $data['updated_at'],
+                'created_at' => Carbon::now()->toDateTimeString(),
+                'updated_at' => Carbon::now()->toDateTimeString(),
 
             ]
         );
@@ -91,7 +91,7 @@ class Note
     {
         $database = new Database((config('database')));
 
-        return $database->query('DELETE FROM notes WHERE id = :id', params: ['id' => $id]);
+        return $database->query('DELETE FROM notes WHERE id = :id', params: compact('id'));
     }
 
     public function createdAt()

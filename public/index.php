@@ -2,9 +2,14 @@
 
 declare(strict_types=1);
 
+// error_reporting(E_ALL);
+// ini_set('display_errors', '1');
+
 use Carbon\Carbon;
 
 require '../vendor/autoload.php';
+
+session_start();
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +27,6 @@ date_default_timezone_set(config('date.tz'));
 
 Carbon::setLocale('pt_BR');
 
-session_start();
+
 
 require base_path('/config/routes.php');

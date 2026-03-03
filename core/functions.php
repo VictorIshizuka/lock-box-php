@@ -3,7 +3,7 @@
 function base_path($path)
 {
 
-    return __DIR__.'/../'.$path;
+    return __DIR__ . '/../' . $path;
 }
 function view($view, $data = [])
 {
@@ -33,6 +33,16 @@ function dump(...$dump)
 
     echo '</pre>';
 }
+
+set_error_handler(function ($errno, $errstr, $errfile, $errline) {
+    echo "<pre>";
+    echo "Erro: $errstr\n";
+    echo "Arquivo: $errfile\n";
+    echo "Linha: $errline\n\n";
+    print_r(debug_backtrace());
+    echo "</pre>";
+    exit;
+});
 
 function abort($code)
 {
@@ -94,7 +104,7 @@ function old($field)
 
 function redirect($uri)
 {
-    return header('Location:'.$uri);
+    return header('Location:' . $uri);
 }
 
 function request()
@@ -119,7 +129,7 @@ function encrypt($data)
     $first_encrypted = openssl_encrypt($data, $method, $first_key, OPENSSL_RAW_DATA, $iv);
     $second_encrypted = hash_hmac('sha3-512', $first_encrypted, $second_key, true);
 
-    $output = base64_encode($iv.$second_encrypted.$first_encrypted);
+    $output = base64_encode($iv . $second_encrypted . $first_encrypted);
 
     return $output;
 }

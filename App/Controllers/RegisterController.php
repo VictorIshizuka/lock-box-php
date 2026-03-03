@@ -18,17 +18,13 @@ class RegisterController
             'name' => ['required'],
             'email' => ['required', 'email', 'confirmed', 'unique:users'],
             'password' => ['required', 'min:8', 'max:30', 'strong'],
-        ], $_POST);
+        ], request()->all());
 
         if ($validation->isInvalid()) {
             return view('register');
         }
 
-        User::create([
-            'name' => $_POST['name'],
-            'email' => $_POST['email'],
-            'password' => $_POST['password'],
-        ]);
+        User::create(request()->all());
 
         flash()->push('message', 'Registrado com sucesso! 👍');
 

@@ -17,21 +17,22 @@ class LoginController
         $validation = Validation::validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
-        ], $_POST);
+        ], request()->all());
 
         if ($validation->isInvalid()) {
             return view('login');
         }
 
-        $user = User::findByEmail($_POST['email']);
+        $user = User::findByEmail(request()->post('email'));
 
-        if (empty($user) || ! password_verify($_POST['password'], $user->password)) {
+        if (empty($user) || ! password_verify(request()->post('password'), $user->password)) {
             flash()->push('validation_login', ['Usuário ou senha estão incorretos!']);
 
             return view('login');
         }
 
-        $_SESSION['auth'] = $user;
+        session()->set('auth', $user);
+
         flash()->push('message', 'Seja bem-vindo, '.$user->name.'!');
 
         return redirect('notes');
